@@ -2,5 +2,26 @@
     <head>
         <title>☁︎</title>
     </head>
-    <body>._.</body>
+    <body>._.
+
+        <canvas id="glCanvas" width="620" height="480"></canvas>
+
+        <script>
+            main();
+
+            function main() {
+                const canvas = document.getElement("");
+                const gl = canvas.getContext("webgl");
+
+                if(!gl){
+                    alert("no machine or browser support, sorry");
+                    return
+                }
+
+                gl.clearColor(0.0, 0.0, 0.0, 1.0);
+                gl.clear(gl.COLOR_BUFFER_BIT);
+            }
+        </script>
+
+    </body>
 </html>
