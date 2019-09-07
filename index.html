@@ -1,27 +1,25 @@
 <html>
     <head>
         <title>☁︎</title>
+    <style>
+		/* remove the border */
+		body {
+			border: 0;
+			margin: 0;
+			background-color: white;
+		}
+		/* make the canvas the size of the viewport */
+		canvas {
+			width: 100vw;
+			height: 100vh;
+			display: block;
+		}
+	</style>
     </head>
-    <body>._.
+    <body>
 
         <canvas id="glCanvas" width="620" height="480"></canvas>
-
-        <script>
-            main();
-
-            function main() {
-                const canvas = document.querySelector("#glCanvas");
-                const gl = canvas.getContext("webgl");
-
-                if(!gl){
-                    alert("no machine or browser support, sorry");
-                    return
-                }
-
-                gl.clearColor(0.0, 0.0, 0.0, 1.0);
-                gl.clear(gl.COLOR_BUFFER_BIT);
-            }
-        </script>
+        <script src="webgl.js"></script>
 
     </body>
 </html>
