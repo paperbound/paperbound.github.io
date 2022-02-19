@@ -1,0 +1,7 @@
+# latex files
+cl.aux
+cl.fdb_latexmk
+cl.fls
+cl.log
+cl.out
+cl.synctex.gz
