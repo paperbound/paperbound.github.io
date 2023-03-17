@@ -1,2 +1,11 @@
 # macOS rubbish
 .DS_Store
+
+# vscode setup
+.vscode
+
+# obsidian notes
+mk/
+
+# cover-letter
+cover-letter/
