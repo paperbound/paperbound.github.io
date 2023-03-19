@@ -49,7 +49,9 @@ body {
 	font-style: italic;
 }
 
-#content h1, #content h2, #content h3 {
+#content h1,
+#content h2,
+#content h3 {
 	font-family: "Myriad Pro", "Helvetica Neue", Helvetica;
 	margin: 0;
 }
@@ -58,7 +60,8 @@ body {
 	margin-top: 2em;
 }
 
-#content p, #content ul {
+#content p,
+#content ul {
 	color: #333;
 }
 
