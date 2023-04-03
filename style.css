@@ -9,7 +9,7 @@ body {
 	margin-top: 30px;
 	margin-right: 20px;
 	text-align: right;
-	width: 180px;
+	width: 150px;
 }
 
 #menu .title {
@@ -42,7 +42,7 @@ body {
 #content {
 	margin-top: 15px;
 	float: left;
-	width: 570px;
+	width: 500px;
 }
 
 #content .title {
@@ -65,15 +65,17 @@ body {
 	color: #333;
 }
 
-#content sup.note {
-	display: inline-block;
-	margin-top: -5px;
-}
-
 #content li {
 	margin-bottom: 0.7em;
 }
 
 #content .task-list {
 	list-style-type: none;
+}
+
+@media screen and (max-width: 1000px) {
+	#content {
+		width: 100%;
+		margin-left: 5px;
+	}
 }

@@ -5,4 +5,9 @@ applications creater by Prasanth Shaji
 
 ## Nature of Article Entries
 
-Will become finish products that are readable
+Will become finish products that are readable, however they will be living
+documents incurring change over time.
+
+## Nature of Canvas Applications
+
+Visual applications with interesting topics and aesthetics.
