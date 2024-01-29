@@ -1,96 +1,116 @@
-\documentclass{scrartcl}
+\documentclass[12pt]{scrartcl}
 
 % Packages
 \usepackage{geometry}
 \usepackage{hyperref}
 \usepackage{fontawesome5}
-\usepackage{multicol}
-
+\usepackage[dvipsnames]{xcolor}
 \usepackage{spectral}
 \usepackage[T1]{fontenc}
+\usepackage{accsupp}
 
-\usepackage[dvipsnames]{xcolor}
+% Font
+\setkomafont{disposition}{\normalfont\bfseries}
+
+% Readability
+\input{glyphtounicode}
+\pdfgentounicode=1
 
 % Layout Configurations
-\geometry{margin=0.7in}
-
+\geometry{margin=0.75in}
 \setcounter{secnumdepth}{0}
-\setlength{\parindent}{0pt}
-
 \pagestyle{empty}
-
-% Document
-\begin{document}
 
 % Some Commands
 \newcommand{\hll}[1]{{\color{RawSienna}#1}}
 \newcommand{\hlp}[1]{{\color{Maroon}#1}}
 
-	\begin{center}
-		\begin{tabular}{rl}
-			\huge Prasanth Thomas & \huge Shaji
-		\end{tabular}
-	\end{center}
+% Document
+\begin{document}
 
-	\begin{center}
-		\itshape Computing, Distributed Systems, Application Programming
-	\end{center}
+\begin{center}
+	\begin{tabular}{rl}
+		\huge Prasanth Thomas & \huge Shaji \\
+		[0.42em]
+		\small {\color{blue}\faIcon{linkedin}} \href{https://www.linkedin.com/in/prasanth-thomas-shaji/}{Prasanth Shaji} & \small {\color{black}\faIcon{github}} \href{https://github.com/paperbound}{paperbound} \\
+		\small \href{mailto:prasanthshaji@icloud.com}{prasanthshaji@icloud.com} & \small \href{tel:+46764524046}{+46 76 452 40 46}
+	\end{tabular}
+\end{center}
 
-	\vfill
+\vspace{2em}
 
-	I am experienced in distributed systems, application programming, computer architecture, embedded systems, and computational thinking. I enjoy programming on *nix systems
+Experienced in distributed systems, application programming, computer architecture, and embedded systems. Passionate about building lasting software.
 
-	\section{Education}
+\vspace{1em}
 
-	Computer Science \& Engineering fundamentals from NIT Calicut \\
-	Embedded Systems, Computer Architecture, Performance Engineering focus from Uppsala
+\noindent \textbf{Skills} \hll{C}, \hll{C++}, \hll{Rust}, \hll{Python}, \hll{Golang}, \hll{Java}, \hlp{UNIX}, \hlp{Bash}, \hlp{Emacs}, \hlp{VS Code}, \hlp{Docker} (Container), \hlp{Puppet} (IaC / Orchestration), \hlp{PyTorch} (ML/ANN frameworks), \hlp{Kafka}, \hlp{Git}, \hlp{Gerrit}, \hlp{JIRA}, Agile
 
-		\subsection[Uppsala Universitet]{August 2021 - \textit{June, 2023} \hfill Uppsala Universitet}
-		\textbf{\large Masters Programme in Computer Science} \hfill \textit{currently pursuing} \newline
-		Training Neural Networks in Embedded Devices \hfill Masters Thesis @ Scania
+\section{Experience}
 
-		Reverse engineering (\hlp{Yocto}/\hlp{Buildroot}) Linux environments in custom i.MX6 embedded boards \\
-		Benchmarking ANN training in \hll{C} / \hll{C++} / \hll{Rust} / \hlp{PyTorch} \dots, on \hlp{ARM} boards and via \hlp{QEMU}
+\subsection[Scania]{Scania \hfill September 2022 - April 2023}
 
-		\subsection[NITC]{July 2013 - June 2017 \hfill NIT Calicut, India}
-		\textbf{\large Bachelor of Technology in Computer Science \& Engineering} \hfill 7.85 \newline
-		Secure Distributed Hash Tables \hfill B-Tech Project
+\subsubsection{Master's Thesis Worker}
 
-	An implementation of a \textit{distributed hash table} using \hlp{Raft} as the \textit{consensus protocol} and utilising a cryptographic scheme to prevent \textit{sybil attacks}
+Reverse engineering Linux environments on i.MX6 based ECU, benchmarking Neural Network training in Embedded Platforms
 
-	\section{Experience}
+\subsection[Affle]{Affle \hfill September 2018 - February 2020}
 
-	Developed \& maintained ad-serving systems, Facebook (Meta Business Partner) SDK integrations
-	%product, migrated components from \hll{PHP} to \hll{Java}, configured \textit{system orchestration} via \hlp{puppet}
-	%managing \hlp{TLS/SSL} cert distributions for the internal \hlp{PKI}
-	%, and moved the primary \textit{data pipeline} from \hlp{Softlayer} to \hlp{AWS}
+\subsubsection{Software Engineer}
 
-		\subsection[Affle]{September 2018 - February 2020\hfill Affle (acquired Vizury\faIcon{trademark})}
-		\textbf{Software Engineer}
-		Brand acquired by Affle Pvt Ltd. Maintained Vizury AdTech platform in a 4 person team, migrated the \hlp{Kafka} data-pipeline over to AWS, lead FB Ad Solutions
+After Vizury AdServing was acquired by Affle Pvt Ltd., migrated then maintained the AdTech platform in a 4-person team, set up \hlp{DevOps} best practises.
 
-		\subsection[Vizury]{July 2017 - August 2018 \hfill Vizury}
-		\textbf{Software Engineer I}
-		Developed features for a \textit{FinTech CDP} app, worked on migration efforts across \textit{cloud service providers}, set up \textit{DevOps \hlp{CI/CD}} setups, codebase migrations \newline
+\subsection[Vizury]{Vizury \hfill July 2017 - August 2018}
 
-	I have some freelance experience developing on \hlp{GitLab}, \hlp{GCP}, and the \hlp{MERN} stack. I have several hobby projects in \hll{Swift}-\hlp{iOS}, \hll{Java}-\hlp{Android}. I like programming small 2D platformer games in \hll{JS} / \hlp{WebGL} and writing small ray tracking programs in \hll{C++} and \hll{Rust}
+\subsubsection{Software Engineer}
 
-	\vfill
+Software Developer for Vizury AdServing, and \textit{lemnisk}'s FinTech CDP app. Migrated \hll{Java} apps across \textit{cloud service providers (IBM SoftLayer to AWS)}.
 
-	\begin{center}
-		\begin{tabular}{rl}
-			1212, Sernanders Väg 3 & Flogsta, Uppsala \\
-			\href{mailto:prasanthshaji@icloud.com}{prasanthshaji@icloud.com} & \href{tel:+46764524046}{+46 76 452 40 46}
-		\end{tabular}
-	\end{center}
+\section{Education}
 
-	\begin{center}
-		{\color{blue}\faIcon{linkedin}}
-		\href{https://www.linkedin.com/in/prasanth-thomas-shaji/}{Prasanth Shaji}
-		{\color{cyan}\faIcon{twitter}}
-		\href{https://twitter.com/prasanth_shaji}{prasanth\_shaji}
-		{\color{black}\faIcon{github}}
-		\href{https://github.com/paperbound}{paperbound}
-	\end{center}
+\subsection[Uppsala Universitet]{Uppsala University, Sweden \hfill August 2021 - August 2023}
+
+\subsubsection{Master of Science in Computer Science \hfill {\color{lightgray} 4.71/ 5}}
+
+Focused on Embedded Systems, Computer Architecture, and Performance Engineering.
+
+\subsection[NITC]{NIT Calicut, India \hfill July 2013 - June 2017}
+
+\subsubsection{Bachelor of Technology in Computer Science \& Engineering \hfill {\color{lightgray} 7.85/ 10}}
+
+Embraced Computational Thinking and Mastered Foundations of Computer Science.
+
+\section{Projects}
+
+\subsubsection[Benchmarking ANNs]{\href{https://github.com/paperbound/hdrnn-arm}{Training Neural Networks on Embedded Devices} \hfill Masters Thesis @ Scania}
+
+Implemented programs to benchmark neural network training in \hll{C} / \hll{C++} / \hll{Python} / \hlp{PyTorch}. Completed benchmarking on \hlp{ARM} boards \& through \hlp{QEMU} emulation.
+
+\subsubsection[Argo DSM]{Prefetch Strategies for Argo Distributed Shared Memory System \hfill Uppsala University}
+
+\href{https://github.com/etascale/argodsm}{ArgoDSM} is a software distributed shared memory system written in \hll{C++}. Implemented stride based prefetching of the DSM pages within ArgoDSM and analysed application performance.
+
+\subsubsection[Xilinx FPGA NN Inference]{Neural Network inference on Xilinx based FPGA \hfill Uppsala University}
+
+Implemented Neural Network inference for handwritten digit recognition on Avnet MiniZed. Used the \hlp{Zynq 7Z007S} logic elements (FPGA) on the MiniZed using Xilinx \hlp{Vivado}.
+
+\subsubsection[WCNES NRF51]{Evaluated RPL+TSCH Network Performance using nRF51 DK \hfill Uppsala University}
+
+Used TSCH and 6TiSCH capabilities of Contiki-NG operating system to test file transfer speeds using multiple nRF51 DK boards.
+
+\subsubsection[Kafka Migration]{Migrating Kafka Data Pipeline from across AWS accounts \hfill Affle}
+
+Completed the data pipeline ownership handover from Vizury to Affle. Migrated high volume event bus from one \hlp{Kafka} system to another without disrupting services.
+
+% \subsubsection[ML in RTB]{Neural Network based OpenRTB Bid Calculations \hfill Vizury}
+
+% Developed and tested integrations for \hlp{Tensorflow} based DNN model inferences for a Real Time Bidding Engine.
+
+% \subsubsection[AdServing codebase migrations]{Completed Migration of an Ad Server codebase from \hll{PhP} to \hll{Java} \hlp{Springboot} \hfill Vizury}
+
+% Completed codebase migrations from \hll{PhP} to \hll{Java} \hlp{Spring Boot} for an Ad Serving application. Set up \textit{DevOps \hlp{CI/CD}} components such as orchestration through \hlp{puppet}.
+
+\subsubsection[sDHT]{Secure Distributed Hash Tables \hfill B.Tech Project @ NITC}
+
+Implemented a \textit{distributed hash table} in \hll{Golang} using \hlp{Raft} as the \textit{consensus protocol} and a \textit{sybil attack} resistant cryptographic scheme.
 
 \end{document}
