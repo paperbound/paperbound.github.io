@@ -30,52 +30,19 @@
 //  `seed` varies the pattern between pages.
 //  Density tapers in the vertical center so text stays readable.
 
-#let confetti(seed: 0, count: 4000, alpha: 7%) = {
-  // Distribute pieces using the chaos game on a Sierpinski hexagon:
-  // six attractors arranged on a hexagonal frame inside the page, with
-  // each iteration pulling the running point 2/3 of the way toward a
-  // chosen vertex (i.e. contraction ratio 1/3). The orbit settles onto
-  // a self-similar fractal of Hausdorff dimension log(6)/log(3) ≈ 1.63
-  // — clusters within clusters within clusters at every scale.
-  //
-  // Vertices in per-mille of page width / height, sized to the A5 aspect.
-  let vx = (500,  900,  900, 500, 100, 100)
-  let vy = ( 50,  300,  700, 950, 700, 300)
-
-  let pos_x = 500
-  let pos_y = 500
+#let confetti(seed: 0, count: 4000, alpha: 14%) = {
+  // Phyllotaxis (golden-angle) spiral: pieces placed at i × 137.508°
+  // with radius ∝ √i — uniform area density, no clustering.
+  let golden_angle = 137.50776405deg
+  let r_max = 870  // per-mille; reaches all corners from centre on A5
 
   for i in range(count) {
-    // Pick an attractor. Pure polynomials in i mod 6 have period ≤ 6
-    // (since (i+6)^n ≡ i^n mod 6), which collapses the chaos-game
-    // orbit onto a single fixed-point cycle. Mixing the running
-    // floating-point state (pos_x, pos_y) into the hash breaks that
-    // periodicity and gives the orbit its full fractal extent.
-    let h = calc.floor(pos_x * 17 + pos_y * 23 + i * 31 + seed * 47)
-    let k = calc.rem(h, 6)
-    pos_x = pos_x + (vx.at(k) - pos_x) * 2 / 3
-    pos_y = pos_y + (vy.at(k) - pos_y) * 2 / 3
+    let theta = golden_angle * i
+    let r = calc.sqrt(i / count) * r_max
+    let xx = calc.round(500 + r * calc.cos(theta))
+    let yy = calc.round(500 + r * calc.sin(theta) * 0.7048)  // A5: 148/210
 
-    // Warmup: skip the first iterations while the orbit settles onto
-    // the attractor (the initial point may not lie on the fractal set).
-    if i < 25 { continue }
-
-    let xx = calc.round(pos_x)
-    let yy = calc.round(pos_y)
-
-    // Skip pieces that would land behind text. Zones are tuned to the
-    // current invitation layout (in per-mille of page width / height):
-    //   1. Top stack — title + ornament + hosts + invite + petals
-    //   2. Names centerpiece — Prasanth & Sharon (tall but narrow)
-    //   3. Venue + city + date
-    //   4. Mini divider + reception + closing ornament
-    let in_text = (
-      (yy >= 110 and yy < 240 and xx > 110 and xx < 230) or
-      (yy >= 380 and yy < 720 and xx > 320 and xx < 690) or
-      (yy >= 720 and yy < 780 and xx > 300 and xx < 600) or
-      (yy >= 750 and yy < 970 and xx > 190 and xx < 290)
-    )
-    if in_text { continue }
+    if xx < 0 or xx > 1000 or yy < 0 or yy > 1000 { continue }
 
     let cc = calc.rem(i * 53 + seed *  7,  6)
     let dd = calc.rem(i * 71 + seed * 13, confetti_palette.len())
