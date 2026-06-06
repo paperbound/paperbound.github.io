@@ -530,6 +530,7 @@ section {
   gap: 0;
   background: var(--paper);
   border: 1px solid var(--rule);
+  flex-wrap: wrap;
 }
 
 .event-card__media {
@@ -551,7 +552,6 @@ section {
   gap: 16px;
   padding-bottom: 14px;
   border-bottom: 1px solid var(--rule);
-  flex-wrap: wrap;
 }
 
 .event-card__kicker .eyebrow { color: var(--gold-deep); }
