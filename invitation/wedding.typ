@@ -9,16 +9,21 @@
 
 // ---------- palette --------------------------------------------------
 
-#let gold       = rgb("#9a7b4f")
-#let rose_gold  = rgb("#c4956a")
-#let blush      = rgb("#d4a8a8")
+#let gold = rgb("#9a7b4f")
+#let rose_gold = rgb("#c4956a")
+#let blush = rgb("#d4a8a8")
 #let soft_peach = rgb("#deb89c")
-#let champagne  = rgb("#dcc480")
+#let champagne = rgb("#dcc480")
 #let warm_ivory = rgb("#d8c8a8")
-#let ink        = rgb("#2c2420")
+#let ink = rgb("#2c2420")
 
 #let confetti_palette = (
-  gold, rose_gold, blush, soft_peach, champagne, warm_ivory,
+  gold,
+  rose_gold,
+  blush,
+  soft_peach,
+  champagne,
+  warm_ivory,
 )
 
 // ---------- confetti border ------------------------------------------
@@ -45,11 +50,10 @@
     if xx < 0 or xx > 1000 or yy < 0 or yy > 1000 { continue }
 
     // Keep only pieces inside the border band (near any edge)
-    let in_band = (xx < band or xx > 1000 - band
-                   or yy < band or yy > 1000 - band)
+    let in_band = (xx < band or xx > 1000 - band or yy < band or yy > 1000 - band)
     if not in_band { continue }
 
-    let cc = calc.rem(i * 53 + seed *  7,  6)
+    let cc = calc.rem(i * 53 + seed * 7, 6)
     let dd = calc.rem(i * 71 + seed * 13, confetti_palette.len())
     let ee = calc.rem(i + seed, 5)
     let ff = calc.rem(i * 31 + seed * 19, 360)
@@ -58,14 +62,18 @@
     let piece = if ee == 0 {
       // hollow triangle
       rotate(ff * 1deg, polygon.regular(
-        size: (4.5 + cc * 0.5) * 1pt, vertices: 3,
-        fill: none, stroke: 0.5pt + color,
+        size: (4.5 + cc * 0.5) * 1pt,
+        vertices: 3,
+        fill: none,
+        stroke: 0.5pt + color,
       ))
     } else if ee == 1 {
       // filled triangle
       rotate(ff * 1deg, polygon.regular(
-        size: (3.5 + cc * 0.4) * 1pt, vertices: 3,
-        fill: color, stroke: none,
+        size: (3.5 + cc * 0.4) * 1pt,
+        vertices: 3,
+        fill: color,
+        stroke: none,
       ))
     } else if ee == 2 {
       // hollow ring
@@ -73,20 +81,21 @@
     } else if ee == 3 {
       // small plus / cross (two perpendicular bars)
       let arm = (3.5 + cc * 0.4) * 1pt
-      let th  = 0.8pt
-      rotate(ff * 1deg, place(center + horizon,
-        stack(dir: ltr, spacing: -arm / 2,
-          rect(width: arm, height: th, fill: color, stroke: none),
-          place(center + horizon,
-            rect(width: th, height: arm, fill: color, stroke: none),
-          ),
-        ),
-      ))
+      let th = 0.8pt
+      rotate(ff * 1deg, place(center + horizon, stack(
+        dir: ltr,
+        spacing: -arm / 2,
+        rect(width: arm, height: th, fill: color, stroke: none),
+        place(center + horizon, rect(width: th, height: arm, fill: color, stroke: none)),
+      )))
     } else {
       // thin dash at angle (minimalist)
       rotate(ff * 1deg, rect(
-        width: (5.5 + cc * 0.6) * 1pt, height: 0.7pt,
-        fill: color, stroke: none, radius: 0.3pt,
+        width: (5.5 + cc * 0.6) * 1pt,
+        height: 0.7pt,
+        fill: color,
+        stroke: none,
+        radius: 0.3pt,
       ))
     }
 
@@ -109,7 +118,9 @@
 // true italics and small-caps support.
 #set text(
   font: (
-    "Libertinus Serif", "Noto Serif", "DejaVu Serif",
+    "Libertinus Serif",
+    "Noto Serif",
+    "DejaVu Serif",
   ),
   size: 10.5pt,
   fill: ink,
@@ -122,16 +133,16 @@
 
 #let cross(size: 12pt, fill: gold, tracking: 0pt) = text(
   font: ("Noto Sans Symbols2", "Noto Sans Symbols", "OpenSymbol"),
-  size: size, fill: fill, tracking: tracking,
+  size: size,
+  fill: fill,
+  tracking: tracking,
 )[❦]
 
 #let ornament(w: 55%) = align(center, box(width: w, grid(
   columns: (1fr, auto, 1fr),
   align: horizon,
   column-gutter: 0.5em,
-  line(length: 100%, stroke: 0.4pt + gold),
-  cross(size: 12pt),
-  line(length: 100%, stroke: 0.4pt + gold),
+  line(length: 100%, stroke: 0.4pt + gold), cross(size: 12pt), line(length: 100%, stroke: 0.4pt + gold),
 )))
 
 #let mini_divider() = align(center, text(size: 11pt, fill: gold)[
@@ -141,7 +152,9 @@
 // Small caps via OpenType smcp feature — real small caps use proportions
 // designed by the type designer, not faked via upper().
 #let label(t) = align(center, text(
-  size: 11pt, tracking: 4pt, fill: gold,
+  size: 11pt,
+  tracking: 4pt,
+  fill: gold,
 )[#smallcaps(t)])
 
 // ---------- invitation template -------------------------------------
@@ -174,17 +187,26 @@
 
   // The names — visual centerpiece.
   text(
-    font: "Libertinus Serif", size: 26pt, style: "italic",
-    fill: gold, tracking: 1pt,
+    font: "Libertinus Serif",
+    size: 26pt,
+    style: "italic",
+    fill: gold,
+    tracking: 1pt,
   )[Prasanth]
   v(-0.15em)
   text(
-    font: "Libertinus Serif", size: 18pt, style: "italic", fill: ink,
+    font: "Libertinus Serif",
+    size: 18pt,
+    style: "italic",
+    fill: ink,
   )[#sym.amp]
   v(-0.15em)
   text(
-    font: "Libertinus Serif", size: 26pt, style: "italic",
-    fill: gold, tracking: 1pt,
+    font: "Libertinus Serif",
+    size: 26pt,
+    style: "italic",
+    fill: gold,
+    tracking: 1pt,
   )[Sharon]
 
   v(0.5em)
@@ -211,7 +233,7 @@
     #v(0.15em)
     #text(size: 9.5pt, fill: gold, style: "italic", tracking: 2pt)[together with] \
     #v(0.15em)
-    Mr. Muthupeedika Laurance & Mrs. Smita Laurance
+    Mr. Muthipeedika Laurance & Mrs. Smita Laurance
   ],
   (
     [request the honour of your presence],
