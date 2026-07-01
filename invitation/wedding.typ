@@ -106,7 +106,7 @@
 // ---------- page setup ----------------------------------------------
 
 #set page(
-  paper: "a5",
+  paper: "a6",
   margin: (x: 1.4cm, y: 1.4cm),
   background: context {
     let pn = counter(page).get().first()
