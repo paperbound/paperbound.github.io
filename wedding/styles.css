@@ -472,25 +472,20 @@ section {
 }
 
 .timeline__item {
-  display: grid;
-  grid-template-columns: 96px 1fr;
-  gap: 20px;
   padding-block: 28px;
   border-top: 1px solid var(--rule);
-  align-items: baseline;
 }
 
 .timeline__item:last-child { border-bottom: 1px solid var(--rule); }
 
-.timeline__year {
+.timeline__body h3 {
   font-family: var(--serif);
   font-style: italic;
   font-size: 28px;
   color: var(--gold-deep);
   line-height: 1;
+  margin-bottom: 16px;
 }
-
-.timeline__body h3 { margin-bottom: 8px; }
 
 .timeline__body p {
   color: var(--ink-soft);
@@ -503,7 +498,6 @@ section {
     gap: 80px;
     align-items: start;
   }
-  .timeline__item { grid-template-columns: 140px 1fr; }
 }
 
 /* =========================================================
@@ -1142,6 +1136,13 @@ section {
 .event-detail__map {
   aspect-ratio: 16 / 11;
   position: relative;
+}
+
+.event-detail__map iframe {
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--gold-tint);
+  display: block;
 }
 
 .spec-list {
