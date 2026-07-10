@@ -371,11 +371,12 @@ section {
 
 .hero__image {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 5;
   width: 100%;
   background: var(--cream-deep);
   overflow: hidden;
   object-fit: cover;
+  object-position: top;
 }
 
 .hero__image::after {
@@ -393,9 +394,6 @@ section {
   .hero__grid {
     grid-template-columns: 1.05fr 0.95fr;
     align-items: center;
-  }
-  .hero__image {
-    aspect-ratio: 4 / 5;
   }
 }
 
