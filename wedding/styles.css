@@ -828,12 +828,16 @@ section {
   background: rgba(18, 14, 10, 0.92);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.25s ease;
+  /* Keep the element visible until the fade-out finishes so it never
+     vanishes mid-transition (which reads as a flicker). */
+  transition: opacity 0.32s ease, visibility 0s linear 0.32s;
+  will-change: opacity;
 }
 
 .lightbox:target {
   opacity: 1;
   visibility: visible;
+  transition: opacity 0.32s ease, visibility 0s linear 0s;
 }
 
 .lightbox__backdrop {
@@ -852,6 +856,17 @@ section {
   flex-direction: column;
   align-items: center;
   gap: 12px;
+  /* Gentle entrance so the photo eases in rather than hard-popping,
+     which smooths prev/next navigation between lightboxes. */
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity 0.32s ease, transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.lightbox:target .lightbox__figure {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .lightbox__figure img,
@@ -914,6 +929,17 @@ section {
 
 .lightbox__nav--prev { left: clamp(8px, 3vw, 32px); }
 .lightbox__nav--next { right: clamp(8px, 3vw, 32px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox,
+  .lightbox:target,
+  .lightbox__figure {
+    transition-duration: 0.01ms;
+  }
+  .lightbox__figure {
+    transform: none;
+  }
+}
 
 /* =========================================================
    RSVP (home strip — full form lives on /rsvp)
