@@ -1,11 +1,11 @@
 // =====================================================================
-//  Wedding invitation  —  Prasanth & Sharon
+//  Engagement invitation  —  Prasanth & Sharon
 // =====================================================================
 
 #import "invitation.typ"
 
 #set document(
-  title: "Wedding - Prasanth & Sharon",
+  title: "Engagement - Prasanth & Sharon",
 )
 
 #set page(
@@ -17,29 +17,29 @@
 )
 
 #invitation.invitation(
-  "We love because He first loved us. — 1 John 4:19",
-  "Prasanth Shaji",
-  [
-    Dr. Shaji & Dr. Asha \
-  ],
-  "Tharasseril, Thevally, Kollam",
+  "Two are better than one ... — Ecclesiastes 4:9",
   "Sharon Laurance",
   [
     Mr. Laurance & Mrs. Smita \
   ],
   "Muthipeedika, Regency Anantham, Dombivli",
+  "Prasanth Shaji",
+  [
+    Dr. Shaji & Dr. Asha \
+  ],
+  "Tharasseril, Thevally, Kollam",
   (
     [request the honour of your presence],
-    [at the marriage of their son],
+    [at the engagement of their daughter],
   ),
-  [daughter of],
-  [Holy Family Roman Catholic Church, Kollam],
-  "Monday",
-  "31",
+  [son of],
+  [Our Lady of Dolours Basilica, Thrissur],
+  "Saturday",
+  "22",
   "August",
   "2026",
   "10:30 A.M.",
-  [Reception follows at *Younus Convention Center* \ from 12:00 noon to 3:00 P.M.],
-  "Sharing the happiness, Daisy & Rohit",
+  [Reception follows at *Hyatt Regency* \ from 11:00 A.M. to 3:00 P.M.],
+  "Sharing the happiness, Daisy and Rohit",
 )
 
