@@ -11,7 +11,6 @@
 
 #let gold = rgb("#9a7b4f")
 #let rose_gold = rgb("#c4956a")
-#let blush = rgb("#d4a8a8")
 #let soft_peach = rgb("#deb89c")
 #let champagne = rgb("#dcc480")
 #let warm_ivory = rgb("#d8c8a8")
@@ -20,7 +19,6 @@
 #let confetti_palette = (
   gold,
   rose_gold,
-  blush,
   soft_peach,
   champagne,
   warm_ivory,
@@ -109,8 +107,6 @@
   },
 )
 
-// Body font: Libertinus Serif — a high-quality open-source serif with
-// true italics and small-caps support.
 #set text(
   font: (
     "Libertinus Serif",
@@ -146,9 +142,6 @@
   line(length: 100%, stroke: 0.4pt + gold),
 )))
 
-// Date panel: the day set large in the centre with the month above and the
-// year below, flanked by weekday and time — each between its own thin gold
-// rules. No vertical dividers; the three columns share a common midline.
 #let ruled_cell(body) = {
   line(length: 100%, stroke: 0.4pt + gold)
   v(0.15em)
@@ -164,9 +157,9 @@
   ruled_cell(text(size: 14pt, tracking: 1pt, fill: ink)[#time]),
   {
     text(size: 12pt, fill: ink)[#month]
-    v(0.01em)
+    linebreak()
     text(size: 26pt, fill: ink)[#day]
-    v(0.01em)
+    linebreak()
     text(size: 12pt, fill: ink)[#year]
   },
   ruled_cell(text(size: 14pt, tracking: 1pt, fill: ink)[#smallcaps(weekday)]),
@@ -175,9 +168,9 @@
 // ---------- invitation template -------------------------------------
 
 #let invitation(
+  verse,
   hosts,
   invite_lines,
-  ceremony_intro,
   venue,
   city,
   weekday,
@@ -189,11 +182,14 @@
 ) = {
   set align(center)
 
-  v(4.75em)
+  v(4em)
 
-  smallcaps(text(size: 12pt, hosts, fill: rose_gold))
+  upper(text(size: 10pt, style: "italic", verse, fill: gold))
+  v(1.5em)
 
-  v(0.45em)
+  smallcaps(text(size: 12pt, hosts))
+
+  v(0.5em)
 
   for line in invite_lines {
     text(size: 10.5pt, style: "italic", line)
@@ -222,38 +218,37 @@
   )[Sharon]
 
   v(0.35em)
+  mini_divider()
+  v(0.5em)
 
-  text(size: 10pt, ceremony_intro)
-  v(0.25em)
   smallcaps(text(size: 11.5pt, weight: "semibold", venue))
   linebreak()
   smallcaps(text(size: 10pt, style: "italic", city))
 
-  v(0.35em)
-  mini_divider()
-  v(0.5em)
+  v(3em)
 
   date_box(weekday, day, month, year, time)
 
+  v(1.5em)
   smallcaps(text(size: 9.5pt, style: "italic", reception))
 }
 
 #invitation(
+  "We love because He first loved us. — 1 John 4:19",
   [
-    Dr. Shaji Tharasseril & Dr. Asha \
+    Dr. Shaji & Dr. Asha \
   ],
   (
     [request the honour of your presence],
     [at the marriage of],
   ),
-  [at the],
   [Holy Family Roman Catholic Church],
   [Kollam],
   "Monday",
   "31",
   "August",
   "2026",
-  "10:30 a.m",
-  [Reception to follow at the \ *Younus Convention Center, Kollam* \ from 12:00 noon to 3:00 in the afternoon],
+  "10:30 a.m.",
+  [Reception to follow at the \ *Younus Convention Center, Kollam* \ from 12:00 noon to 3:00 p.m.],
 )
 
