@@ -31,13 +31,8 @@
 //  Renders a deterministic confetti scatter in a rectangular band around
 //  the page edges, forming a decorative frame. The centre is left clear
 //  so text remains fully readable.
-//
-//  `band` — width of the border band in per-mille of the page dimension.
-//           85 ≈ 1.25 cm on A5 width.
-//  `alpha` — opacity (lower = more transparent).
-//  `seed`  — varies the pattern between pages.
 
-#let confetti-border(seed: 0, count: 4000, band: 85, alpha: 92%) = {
+#let confetti-border(seed: 42, count: 4000, band: 81, alpha: 92%) = {
   let golden_angle = 137.50776405deg
   let r_max = 870
 
@@ -106,8 +101,8 @@
 // ---------- page setup ----------------------------------------------
 
 #set page(
-  paper: "a6",
-  margin: (x: 1.4cm, y: 1.4cm),
+  paper: "a5",
+  margin: (x: 1cm, y: 1cm),
   background: context {
     let pn = counter(page).get().first()
     confetti-border(seed: pn)
@@ -136,26 +131,46 @@
   size: size,
   fill: fill,
   tracking: tracking,
-)[❦]
-
-#let ornament(w: 55%) = align(center, box(width: w, grid(
-  columns: (1fr, auto, 1fr),
-  align: horizon,
-  column-gutter: 0.5em,
-  line(length: 100%, stroke: 0.4pt + gold), cross(size: 12pt), line(length: 100%, stroke: 0.4pt + gold),
-)))
+)[✝]
 
 #let mini_divider() = align(center, text(size: 11pt, fill: gold)[
   · #h(0.4em) #cross(size: 11pt) #h(0.4em) ·
 ])
 
-// Small caps via OpenType smcp feature — real small caps use proportions
-// designed by the type designer, not faked via upper().
-#let label(t) = align(center, text(
-  size: 11pt,
-  tracking: 4pt,
-  fill: gold,
-)[#smallcaps(t)])
+#let and_divider(word: "and", w: 58%) = align(center, box(width: w, grid(
+  columns: (1fr, auto, 1fr),
+  align: horizon,
+  column-gutter: 0.7em,
+  line(length: 100%, stroke: 0.4pt + gold),
+  text(size: 13pt, style: "italic", fill: ink)[#word],
+  line(length: 100%, stroke: 0.4pt + gold),
+)))
+
+// Date panel: the day set large in the centre with the month above and the
+// year below, flanked by weekday and time — each between its own thin gold
+// rules. No vertical dividers; the three columns share a common midline.
+#let ruled_cell(body) = {
+  line(length: 100%, stroke: 0.4pt + gold)
+  v(0.15em)
+  body
+  v(0.15em)
+  line(length: 100%, stroke: 0.4pt + gold)
+}
+
+#let date_box(weekday, day, month, year, time, w: 88%) = align(center, box(width: w, grid(
+  columns: (1fr, auto, 1fr),
+  align: horizon + center,
+  column-gutter: 1.4em,
+  ruled_cell(text(size: 14pt, tracking: 1pt, fill: ink)[#time]),
+  {
+    text(size: 12pt, fill: ink)[#month]
+    v(0.01em)
+    text(size: 26pt, fill: ink)[#day]
+    v(0.01em)
+    text(size: 12pt, fill: ink)[#year]
+  },
+  ruled_cell(text(size: 14pt, tracking: 1pt, fill: ink)[#smallcaps(weekday)]),
+)))
 
 // ---------- invitation template -------------------------------------
 
@@ -165,14 +180,18 @@
   ceremony_intro,
   venue,
   city,
-  date_line,
+  weekday,
+  day,
+  month,
+  year,
+  time,
   reception,
 ) = {
   set align(center)
 
-  v(4.25em)
+  v(4.75em)
 
-  text(size: 12pt, hosts)
+  smallcaps(text(size: 12pt, hosts, fill: rose_gold))
 
   v(0.45em)
 
@@ -182,8 +201,6 @@
   }
 
   v(0.35em)
-  mini_divider()
-  v(0.2em)
 
   // The names — visual centerpiece.
   text(
@@ -193,14 +210,9 @@
     fill: gold,
     tracking: 1pt,
   )[Prasanth]
-  v(-0.15em)
-  text(
-    font: "Libertinus Serif",
-    size: 18pt,
-    style: "italic",
-    fill: ink,
-  )[#sym.amp]
-  v(-0.15em)
+  v(0.15em)
+  and_divider()
+  v(0.15em)
   text(
     font: "Libertinus Serif",
     size: 26pt,
@@ -209,40 +221,39 @@
     tracking: 1pt,
   )[Sharon]
 
-  v(0.5em)
+  v(0.35em)
 
   text(size: 10pt, ceremony_intro)
   v(0.25em)
-  text(size: 11.5pt, weight: "semibold", venue)
+  smallcaps(text(size: 11.5pt, weight: "semibold", venue))
   linebreak()
-  text(size: 10pt, style: "italic", city)
+  smallcaps(text(size: 10pt, style: "italic", city))
 
   v(0.35em)
-  text(size: 10pt, date_line)
-
-  v(0.45em)
   mini_divider()
-  v(0.3em)
+  v(0.5em)
 
-  text(size: 9.5pt, style: "italic", reception)
+  date_box(weekday, day, month, year, time)
+
+  smallcaps(text(size: 9.5pt, style: "italic", reception))
 }
 
 #invitation(
   [
-    Dr. Shaji Tharasseril & Dr. Asha Haridas \
-    #v(0.15em)
-    #text(size: 9.5pt, fill: gold, style: "italic", tracking: 2pt)[together with] \
-    #v(0.15em)
-    Mr. Muthipeedika Laurance & Mrs. Smita Laurance
+    Dr. Shaji Tharasseril & Dr. Asha \
   ],
   (
     [request the honour of your presence],
-    [at the marriage of their beloved children],
+    [at the marriage of],
   ),
-  [the Nuptial Mass will be celebrated at the],
+  [at the],
   [Holy Family Roman Catholic Church],
   [Kollam],
-  [on _#h(0.3em)August 31, 2026#h(0.3em)_ at half past ten in the morning],
-  [Reception to follow at the \ *Younus Convention Center, Kollam* \ from 12:00 noon to 4:00 in the afternoon],
+  "Monday",
+  "31",
+  "August",
+  "2026",
+  "10:30 a.m",
+  [Reception to follow at the \ *Younus Convention Center, Kollam* \ from 12:00 noon to 3:00 in the afternoon],
 )
 
