@@ -72,15 +72,9 @@
       // hollow ring
       circle(radius: (2.0 + cc * 0.3) * 1pt, fill: none, stroke: 0.6pt + color)
     } else if ee == 3 {
-      // small plus / cross (two perpendicular bars)
-      let arm = (3.5 + cc * 0.4) * 1pt
-      let th = 0.8pt
-      rotate(ff * 1deg, place(center + horizon, stack(
-        dir: ltr,
-        spacing: -arm / 2,
-        rect(width: arm, height: th, fill: color, stroke: none),
-        place(center + horizon, rect(width: th, height: arm, fill: color, stroke: none)),
-      )))
+      // small filled square
+      let side = (3.5 + cc * 0.4) * 1pt
+      rotate(ff * 1deg, rect(width: side, height: side, fill: color, stroke: none))
     } else {
       // thin dash at angle (minimalist)
       rotate(ff * 1deg, rect(
