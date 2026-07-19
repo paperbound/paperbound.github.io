@@ -258,36 +258,41 @@ section {
   --fg: var(--cream);
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   background: var(--bg);
   color: var(--fg);
   text-decoration: none;
-  padding: 18px 32px;
+  padding: 18px 36px;
   font-family: var(--sans);
   font-size: 12px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   font-weight: 500;
   border: 1px solid var(--bg);
+  border-radius: 999px;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-}
-
-.btn::after {
-  content: "";
-  width: 16px; height: 1px;
-  background: currentColor;
-  display: block;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  transition: background 0.2s, color 0.2s, border-color 0.2s,
+    transform 0.15s ease, box-shadow 0.2s ease;
 }
 
 .btn:hover {
   --bg: var(--gold-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.14);
 }
 
 .btn--ghost {
   --bg: transparent;
   --fg: var(--ink);
   border-color: var(--ink);
+  box-shadow: none;
 }
 .btn--ghost:hover {
   --bg: var(--ink);
